@@ -15,8 +15,7 @@ FROM ubuntu:24.04
 COPY --from=uvstage /uv /uvx /bin/
 WORKDIR /app
 COPY . .
-RUN --mount=type=cache,target=/root/.cache/uv \
-  uv sync
+RUN uv sync
 # faster-whisper doesn't require torch, so we don't need to install it
 
 # 使用tini作为容器入口点，提供更好的信号处理
