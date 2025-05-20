@@ -15,7 +15,8 @@ FROM ghcr.io/astral-sh/uv:0.6.12 as uvstage
 COPY --from=uvstage /uv /uvx /bin/
 WORKDIR /app
 COPY . .
-RUN /bin/uv sync
+RUN mkdir -p /root/.cache/uv 
+RUN uv sync
 # faster-whisper doesn't require torch, so we don't need to install it
 
 # 使用tini作为容器入口点，提供更好的信号处理
