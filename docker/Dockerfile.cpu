@@ -9,10 +9,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && \
     apt install -y ffmpeg python3 pip && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* \
+    pip install uv
 WORKDIR /app
 COPY . .
-RUN pip install -r requirements.txt
+uv sync
 # faster-whisper doesn't require torch, so we don't need to install it
 
 # 使用tini作为容器入口点，提供更好的信号处理
