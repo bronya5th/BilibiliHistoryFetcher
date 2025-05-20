@@ -6,7 +6,6 @@ ENV all_proxy=${PROXY}
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 
-ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt upgrade -y && apt install -y ffmpeg python3 pip && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY . .
