@@ -28,6 +28,6 @@ jobs:
           context: .
           file: ${{ matrix.dockerfile }}
           platforms: ${{ matrix.platform }}
-          push: false  # 如果你不希望推送，设为 false
+          push: true  # 如果你不希望推送，设为 false
           tags: |
             backend/${{ matrix.platform }}:${{ github.sha }}
