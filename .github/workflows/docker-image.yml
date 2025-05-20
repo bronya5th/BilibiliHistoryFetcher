@@ -15,11 +15,9 @@ jobs:
     strategy:
       matrix:
         include:
-          # x86_64 平台：构建 cpu 和 cuda 版本
+          # x86_64 平台：构建 cpu 版本
           - platform: x86_64
             dockerfile: docker/Dockerfile.cpu
-          - platform: x86_64
-            dockerfile: docker/Dockerfile.cuda
             
     steps:
       - name: Checkout code
