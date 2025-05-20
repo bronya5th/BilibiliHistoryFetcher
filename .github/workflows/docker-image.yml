@@ -22,12 +22,15 @@ jobs:
           - platform: cuda
             dockerfile: Dockerfile.cuda
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image (cpu or cuda)
-      with:
-          context: ./docker
-          file: ${{ matrix.dockerfile }}
-          platforms: ${{ matrix.platform }}
-          push: false
-          tags: |
-            backend/${{ matrix.platform }}:${{ github.sha }}
+     - name: Checkout code
+       uses: actions/checkout@v4
+       
+     - name: Build the Docker image (cpu or cuda)
+       uses: docker/build-push-action@v5
+       with:
+        context: ./docker
+        file: ${{ matrix.dockerfile }}
+        platforms: ${{ matrix.platform }}
+        push: false
+        tags: |
+          backend/${{ matrix.platform }}:${{ github.sha }}
