@@ -8,8 +8,7 @@ ENV LC_ALL=C.UTF-8
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-  apt-get install -y ffmpeg python3 pip uv && \
-  apt-get clean && \
+  apt-get install -y ffmpeg python3 pip && \
   rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY . .
