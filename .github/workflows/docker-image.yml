@@ -30,7 +30,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./docker
+          context: docker/
           file: ${{ matrix.dockerfile }}
           platforms: ${{ matrix.platform }}
           push: false  # 如果你不希望推送，设为 false
