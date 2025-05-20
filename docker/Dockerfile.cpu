@@ -5,8 +5,9 @@ ENV all_proxy=${PROXY}
 # 设置默认语言和编码，避免Unicode相关问题
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && apt upgrade -y && apt install -y ffmpeg python3 pip && rm -rf /var/lib/apt/lists/*
+RUN apt install ffmpeg python3 pip -y && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
