@@ -17,12 +17,12 @@ jobs:
         include:
           # x86_64 平台：构建 cpu 和 cuda 版本
           - platform: x86_64
-            dockerfile: Dockerfile.cpu
+            dockerfile: docker/Dockerfile.cpu
           - platform: x86_64
-            dockerfile: Dockerfile.cuda
+            dockerfile: docker/Dockerfile.cuda
           # arm64 平台：只构建 cpu 版本
           - platform: arm64
-            dockerfile: Dockerfile.cpu
+            dockerfile: docker/Dockerfile.cpu
             
     steps:
       - name: Checkout code
@@ -30,7 +30,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: docker/
+          context: .
           file: ${{ matrix.dockerfile }}
           platforms: ${{ matrix.platform }}
           push: false  # 如果你不希望推送，设为 false
