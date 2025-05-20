@@ -14,23 +14,25 @@ jobs:
     
     strategy:
       matrix:
-        platform: [cpu, cuda]
-        dockerfile: ["Dockerfile.cpu", "Dockerfile.cuda"]
         include:
-          - platform: cpu
+          # x86_64 平台：构建 cpu 和 cuda 版本
+          - platform: x86_64
             dockerfile: Dockerfile.cpu
-          - platform: cuda
+          - platform: x86_64
             dockerfile: Dockerfile.cuda
+          # arm64 平台：只构建 cpu 版本
+          - platform: arm64
+            dockerfile: Dockerfile.cpu
+            
     steps:
-     - name: Checkout code
-       uses: actions/checkout@v4
-       
-     - name: Build the Docker image (cpu or cuda)
-       uses: docker/build-push-action@v5
-       with:
-        context: ./docker
-        file: ${{ matrix.dockerfile }}
-        platforms: ${{ matrix.platform }}
-        push: false
-        tags: |
-          backend/${{ matrix.platform }}:${{ github.sha }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./docker
+          file: ${{ matrix.dockerfile }}
+          platforms: ${{ matrix.platform }}
+          push: false  # 如果你不希望推送，设为 false
+          tags: |
+            backend/${{ matrix.platform }}:${{ github.sha }}
