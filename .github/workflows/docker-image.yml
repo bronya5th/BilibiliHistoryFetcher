@@ -20,9 +20,6 @@ jobs:
             dockerfile: docker/Dockerfile.cpu
           - platform: x86_64
             dockerfile: docker/Dockerfile.cuda
-          # arm64 平台：只构建 cpu 版本
-          - platform: arm64
-            dockerfile: docker/Dockerfile.cpu
             
     steps:
       - name: Checkout code
