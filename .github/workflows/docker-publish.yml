@@ -36,7 +36,9 @@ jobs:
       matrix:
         include:
           # x86_64 & arm64 arch: 构建 cpu 版本
-          - platform: linux/amd64,linux/arm64
+          - platform: linux/amd64
+            dockerfile: docker/Dockerfile.cpu
+          - platform: linux/arm64
             dockerfile: docker/Dockerfile.cpu
             
     steps:
