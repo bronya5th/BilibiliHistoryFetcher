@@ -76,7 +76,7 @@ jobs:
             ghcr.io/bronya5th/backend_${{ matrix.platform }}:${{ github.sha }}
             ghcr.io/bronya5th/backend_${{ matrix.platform }}:${{ steps.meta.outputs.version }}
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
+          username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_TOKEN }}
 
       # Sign the resulting Docker image digest except on PRs.
