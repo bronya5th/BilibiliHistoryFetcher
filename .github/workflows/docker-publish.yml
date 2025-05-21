@@ -35,10 +35,9 @@ jobs:
     strategy:
       matrix:
         include:
-          # x86_64 & arm64 arch: 构建 cpu 版本
-          - platform: linux/amd64
+          - os: ubuntu-24.04
             dockerfile: docker/Dockerfile.cpu
-          - platform: linux/arm64
+          - os: ubuntu-24.04-arm
             dockerfile: docker/Dockerfile.cpu
             
     steps:
