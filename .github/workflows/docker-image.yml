@@ -5,6 +5,12 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+    
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
 
@@ -31,7 +37,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           push: true  # 如果你不希望推送，设为 false
           tags: |
-            ghcr.io/bronya5th/backend${{ matrix.platform }}:${{ github.sha }}
+            ghcr.io/bronya5th/backend_${{ matrix.platform }}:${{ github.sha }}
           registry: ghcr.io
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_TOKEN }}
