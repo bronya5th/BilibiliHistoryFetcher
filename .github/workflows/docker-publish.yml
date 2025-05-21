@@ -32,6 +32,12 @@ jobs:
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
 
+    strategy:
+      matrix:
+        include:
+          # x86_64 平台：构建 cpu 版本
+          - platform: x86_64
+            dockerfile: docker/Dockerfile.cpu
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
