@@ -30,14 +30,9 @@ jobs:
           - runs-on: ubuntu-24.04-arm
             dockerfile: docker/Dockerfile.cpu
             platform: linux/arm64
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
-
 
     uses: ./.github/workflows/build_template.yml
     with:
-        runs-on: ${{ matrix.runs-on }}
-        dockerfile: ${{ matrix.dockerfile }}
-        platform: ${{ matrix.platform }}
+      runs-on: ${{ matrix.runs-on }}
+      dockerfile: ${{ matrix.dockerfile }}
+      platform: ${{ matrix.platform }}
