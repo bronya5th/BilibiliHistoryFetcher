@@ -30,19 +30,14 @@ jobs:
           - runs-on: ubuntu-24.04-arm
             dockerfile: docker/Dockerfile.cpu
             platform: linux/arm64
-    runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: read
       packages: write
       id-token: write
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
-      - name: Call build template
-        uses: ./.github/workflows/build_template.yml
-        with:
-          runs-on: ${{ matrix.runs-on }}
-          dockerfile: ${{ matrix.dockerfile }}
-          platform: ${{ matrix.platform }}
+    uses: ./.github/workflows/build_template.yml
+    with:
+        runs-on: ${{ matrix.runs-on }}
+        dockerfile: ${{ matrix.dockerfile }}
+        platform: ${{ matrix.platform }}
