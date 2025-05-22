@@ -17,15 +17,13 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
-permissions:
-  contents: read
-  packages: write
-  id-token: write
-
 jobs:
   build:
     runs-on: ${{ inputs.runs-on }}
-
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
