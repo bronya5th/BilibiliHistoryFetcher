@@ -37,6 +37,9 @@ jobs:
       id-token: write
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Call build template
         uses: ./.github/workflows/build_template.yml
         with:
