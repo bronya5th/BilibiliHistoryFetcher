@@ -36,3 +36,4 @@ jobs:
       runs-on: ${{ matrix.runs-on }}
       dockerfile: ${{ matrix.dockerfile }}
       platform: ${{ matrix.platform }}
+    secrets: inherit
